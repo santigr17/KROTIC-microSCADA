@@ -1,3 +1,3 @@
-#KROTIC-microSCADA
-##Laboratorio LuTec
-##Instituto Tecnológico de Costa Rica
+# KROTIC-microSCADA
+## Laboratorio LuTec
+## Instituto Tecnológico de Costa Rica
