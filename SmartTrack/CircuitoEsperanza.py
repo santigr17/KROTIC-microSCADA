@@ -4,6 +4,7 @@ import numpy as np
 import os
 import time
 
+activeView = 0
 class vista (threading.Thread):
     """
     Clase encargada de manejar una cámara.
