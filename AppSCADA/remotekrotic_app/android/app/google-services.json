@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "232196225577",
+    "firebase_url": "https://krotic-microscada.firebaseio.com",
+    "project_id": "krotic-microscada",
+    "storage_bucket": "krotic-microscada.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232196225577:android:2b9cd828d3f3cebb193a38",
+        "android_client_info": {
+          "package_name": "com.example.remotekrotic_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232196225577-8s065ttf743unag4bgbdj05b9buul0ck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh0riFqzk-cZyEWYmWiVfXHIN6Mn3h29M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232196225577-8s065ttf743unag4bgbdj05b9buul0ck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

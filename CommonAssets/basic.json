@@ -1,0 +1,26 @@
+{
+    "instrucciones":
+    [
+        {
+            "idInstruccion": "ks01",
+            "nombre": "Avanzar",
+            "descripcion": "Avanzar el KROTIC 30 cm"
+        },
+        {
+            "idInstruccion": "ks02",
+            "nombre": "Retroceder",
+            "descripcion": "Retrocede el KROTIC 30 cm"
+        },
+        {
+            "idInstruccion": "ks03",
+            "nombre": "Girar 90°",
+            "descripcion": "Girar +90° "
+        },
+        {
+            "idInstruccion": "ks01",
+            "nombre": "Girar 45°",
+            "descripcion": "Girar +45"
+        }
+
+    ]
+}
