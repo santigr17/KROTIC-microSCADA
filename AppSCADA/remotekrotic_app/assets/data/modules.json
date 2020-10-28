@@ -1,0 +1,76 @@
+{
+    "modulos": 
+    [
+        {
+        "idModulo": 0,
+        "codigo": "mks00",
+        "nombre": "Comunicación",
+        "descripcion": "Comunicación con el servidor",
+        "instrucciones":
+            [
+                {
+                    "idInstruccion": "imks0001",
+                    "nombre": "Iniciar Programa",
+                    "descripcion": "Ejecuta el programa en el robot"
+                }
+            ]
+        },
+        {
+            "idModulo": 1,
+            "codigo": "mks01",
+            "nombre": "Desplazamiento",
+            "descripcion": "Permite moverse en 2D",
+            "instrucciones":
+            [
+                {
+                "idInstruccion": "imks0101",
+                "nombre": "Avanzar",
+                "descripcion": "Avanzar el KROTIC 30 cm"
+                },
+                {
+                "idInstruccion": "imks0102",
+                "nombre": "Retroceder",
+                "descripcion": "Retrocede el KROTIC 30 cm"
+                },
+                {
+                "idInstruccion": "imks0103",
+                "nombre": "Girar 90°",
+                "descripcion": "Girar +90° "
+                },
+                {
+                "idInstruccion": "imks0104",
+                "nombre": "Girar 45°",
+                "descripcion": "Girar +45"
+                }
+            ]
+        },
+        {
+        "idModulo": 2,
+        "codigo": "mks02",
+        "nombre": "Luces",
+        "descripcion": "Manejo de los LEDs",
+        "instrucciones":
+            [
+                {
+                    "idInstruccion": "imks0201",
+                    "nombre": "Iniciar Programa",
+                    "descripcion": "Ejecuta el programa en el robot"
+                }
+            ]
+        },
+        {
+        "idModulo": 3,
+        "codigo": "mks03",
+        "nombre": "Sensor de Luz",
+        "descripcion": "Medición de la fotoresistencia",
+        "instrucciones":
+            [
+                {
+                    "idInstruccion": "imks0301",
+                    "nombre": "Iniciar Programa",
+                    "descripcion": "Ejecuta el programa en el robot"
+                }
+            ]
+        }
+    ]
+}

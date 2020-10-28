@@ -1,10 +1,26 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:remotekrotic_app/views/loginView.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:remotekrotic_app/bloc/autenticacionBloc/authentication.dart';
+import 'package:remotekrotic_app/pages/inicio_page.dart';
+import 'package:remotekrotic_app/pages/login_page.dart';
+import 'package:remotekrotic_app/services/authentication_service.dart';
+
 
 void main() {
-  runApp(MyApp());
+  runApp( RepositoryProvider<AuthenticationService>(create: (context){
+    return FakeAuthenticationService();
+  },
+  child: BlocProvider<AuthenticationBloc>(
+    create: (context){
+      final authService = RepositoryProvider.of<AuthenticationService>(context);
+      return AuthenticationBloc(authService)..add(AppLoaded());
+    },
+    child: MyApp(),
+
+  ), )
+
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,23 +33,20 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder:(context, state){
+          if(state is AuthenticationAuthenticated){
+            if(state.user.tipoUsuario == 1){
+              return InicioEncargado( encargado: state.user,);
+            }
+            else{
+              return InicioEstudiante( estudiante: state.user,);
+
+            }            
+          }
+          return LoginPage();
+        },
+      ),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {   
-    return Login();
   }
 }
