@@ -1,25 +1,27 @@
 import 'programa.dart';
 
 abstract class Usuario {
+  int userID;
   String username;
   String password;
   String nombre;
   int tipoUsuario;
   String institucion;
   Usuario({
+    this.userID,
     this.username,
     this.password,
     this.nombre,
-    this.institucion = "Tecnologico Costa Rica",
     this.tipoUsuario,
-  });  
+    this.institucion = "Tecnologico Costa Rica",
+  });
 }
 
 class Estudiante extends Usuario {
   List<Programa> programas;
   
-  Estudiante (String nombre, String username, String password) 
-    : super(nombre: nombre, username: username, password: password, tipoUsuario :0);
+  Estudiante (int userId, String nombre, String username, String password) 
+    : super(userID: userId, nombre: nombre, username: username, password: password, tipoUsuario :0);
 }
 
 

@@ -2,9 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:remotekrotic_app/bloc/autenticacionBloc/authentication.dart';
+import 'package:remotekrotic_app/bloc/inicioEstudianteBlob/inicio_bloc.dart';
+import 'package:remotekrotic_app/bloc/inicioEstudianteBlob/inicio_event.dart';
 import 'package:remotekrotic_app/pages/inicio_page.dart';
 import 'package:remotekrotic_app/pages/login_page.dart';
 import 'package:remotekrotic_app/services/authentication_service.dart';
+import 'package:remotekrotic_app/services/localDB/localStorage.dart';
 
 
 void main() {
@@ -36,13 +39,15 @@ class MyApp extends StatelessWidget {
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder:(context, state){
           if(state is AuthenticationAuthenticated){
-            if(state.user.tipoUsuario == 1){
-              return InicioEncargado( encargado: state.user,);
-            }
-            else{
-              return InicioEstudiante( estudiante: state.user,);
-
-            }            
+            return RepositoryProvider<LocalStorage> (
+              create: (context){return LocalStorage();},
+              child: BlocProvider<InicioBloc>(create: (context){
+                final storage = RepositoryProvider.of<LocalStorage>(context);
+                return InicioBloc(storage)..add(CargarProgras(state.user));
+                },
+                child:InicioEstudiante(estudiante:state.user),
+              ),
+            );    
           }
           return LoginPage();
         },

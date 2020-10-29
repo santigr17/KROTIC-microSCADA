@@ -8,6 +8,7 @@ class Modulo {
   List<Instruccion> _instruccionesDisponibles;
 
   Modulo(this._idModulo, this._descripcion, this._nombre);
+  
   Modulo.fromJson(Map<String, dynamic> json)
   {
     this._nombre = json['nombre'];

@@ -1,29 +1,41 @@
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 import 'package:remotekrotic_app/models/programa.dart';
+import 'package:remotekrotic_app/models/usuarios_model.dart';
 
 abstract class InicioEvent extends Equatable {
-  final Programa selected;
-  InicioEvent(this.selected);
+  final Usuario user;
+  InicioEvent(this.user);
+}
+
+class CargarProgras extends InicioEvent {
+  CargarProgras(Usuario user) : super(user);
+  @override
+  // TODO: implement props
+  List<Object> get props => [];
+}
+
+class PrograsCargadas extends InicioEvent {
+  final List<Programa> lista;
+  PrograsCargadas({@required this.lista,@required user}) : super(user);
+  
+  @override
+  List<Object> get props => [lista];  
+}
+
+class CrearProgra extends InicioEvent {
+  CrearProgra(Usuario user) : super(user);
   @override
   List<Object> get props => [];
 }
 
-class CreatePrograma extends InicioEvent {
-  CreatePrograma() : super(null);
-}
+class EnviarProgra extends InicioEvent {
+  final Programa _seleccion;
 
-class SendPrograma extends InicioEvent {
-  SendPrograma(Programa selected) : super(selected);
-}
+  EnviarProgra(Programa seleccion, Usuario user) : 
+    this._seleccion = seleccion,
+    super(user);
 
-class EditPrograma extends InicioEvent {
-  EditPrograma(Programa selected) : super(selected);
-}
-
-class EditRobot extends InicioEvent {
-  EditRobot(Programa selected) : super(selected);
-}
-
-class ViewFeedback extends InicioEvent {
-  ViewFeedback(Programa selected) : super(selected);
+  @override
+  List<Object> get props => [ _seleccion, user];
 }
