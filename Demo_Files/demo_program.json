@@ -1,0 +1,52 @@
+{
+    "IDusuario":0,
+    "IDprograma":0,
+    "nombre":"demo1",
+    "estado":"editado",
+    "fecha_hora":"2020/11/10,20:00",
+    "robot":
+    [
+        {
+            "IDmodulo":0
+        },
+        {
+            "IDmodulo":1
+        },
+        {
+            "IDmodulo":2
+        }
+    ],
+    "codigo": 
+    [
+        {
+            "IDinstruccion":0,
+            "tipo":1
+        },
+        {
+            "IDinstruccion":1,
+            "tipo":0,
+            "condicion":
+            {
+                "veces":100
+            },
+            "repetir":
+            [
+                {
+                    "IDinstruccion":2,
+                    "tipo":1
+                },
+                {
+                    "IDinstruccion":3,
+                    "tipo":1
+                }
+            ]
+            
+        }
+        
+
+    ],
+    "feedback":
+    {
+          
+    }
+}

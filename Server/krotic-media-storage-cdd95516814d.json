@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tough-entry-259223",
+  "private_key_id": "cdd95516814da098a0cb0660bb398997a047f489",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDUBO/PWde57Awh\n23Wd2FlBeW3vc9jUBYLdDRGuRkLN9SRpHGlH9030MRVnpy+Z1C3FPi3vxIxvdJn8\nxAMk/d7p4waOsQqd3/bQ7YJIjxkzfvrjckzQbP1c2uz18GvfBI63wqVi5l0TIB7n\nEwIV/YT14hX8Q8aF6EueESE50hnf48RYAYVaHV39wZ6EpLN2iRD8d44eDrQqDzVa\nRbe9Q82qfhYppb/CZdHxwFP8Gmbs4tQHeBiUDRkfyZPU1BBRPUtuOBJDmT4WPlei\n2mdpR86nRD3AsrAmLksL3nb85eCUtP+SNWjJg+bRb2+mzOFYGbybmYyHrG6nOfqd\ngfXwqFT9AgMBAAECggEAEVn8FFCqfo1KauTuicYAfALHk/67opJ25MdiiIw4gGmN\nGssX9KtRJmhz84EzvJeoTUmq8cH4qlB1H8Ic7cSXHzYUvc3QbB49sViWvoBzlArS\n1pVuouogjB5goToVYfGaCoD0DxWCTYPl84xTMeCHJqZjnTsgvqnFsoB9YyGGO5Pe\noBIqqxL4Sx/pUUZcCyoZSL4+7krRQo3xsQuumW7DTPdiqAerpGtW7ixdXVCUXHoe\nipZbDpj8CCuR3UtuOXJhDi0efel3ANLBad6/eQC8vYnjE/71QMZsNOgxNKLb3PaT\nZkMXRECfRudE5tmDZa+JftJgGnP7py1XOs6QdArg0wKBgQD+d03fJgMj5hxMrgv+\n9BB189HSB+pQEAIQcFSQ+V7pLyYWVnr0up1pZQs/rRcJKdlTwNOsiH/stxgtDciz\nuJSSx8t4yY8J1AwWKTJiDWwjNd3VluxlRZDqaRQQUWQnyTIrUJHXUVzUPDhLbErS\nJcWz3WFSLWBAEKJqphQjmswsjwKBgQDVTCDL3/jAKVgGDtaAE7sMWjdyOPMJImsQ\nrUJhig1I6zCwEnELIKarojIVHIqTt8ww5BvJt7AU8ThI7cl+TLEZCcowqPwCLRA8\nn+d8SkJx1/Eg7oQaWUSTnqSX7369H361AD/PpSrXhAfHXTY6em13MnLL14+YeDxt\nI/JzcWiDswKBgD/2CvvRGS730xsvEFLYVB7h11acqLfRHkO1iHwcQlAIiuFIgYVs\nNs7cGBS8VDL4cukLaelPMiB08T253j3WYnn2gF1vBGYrB5K2bjSZPRoomwbp9aeK\n8d8J5IIpgyxA9TxP9yiRCe1K6beDk9b4qZYJSkIWp7/SrpByCFPev/1fAoGBAKw+\nZMGeZSbwfBewRcF5rXPlKp8/o+s9cw4ti8xuihnXayLUUZs1y8IQIbdwq+tr4iWd\nH19+yV+wB87EzxEB54WbpT40SAWN1G3Qh0OUSCHcyujYE6+fZMR8uNfE3CjnVQ/f\nWqhY7cbJ5Oo2uILyuJEoGRHJSjlK5ykPfUuCSm8HAoGBAPIbjz4SPv2Z7XAWePZ5\nheWYg7NBPafM2WJzMmqRGaCfWzSsjrKoml94WAmezbRJD2FFZfRXniuHQsxrEe1i\nLucJKMQg5whzuSCbr7CuDPIuvr1IIY4IeM+Gr8FaeXKXhiuKy94Dv0e1XkZt5AZs\nKNG2FTZw9i7XNOCD6BownQjF\n-----END PRIVATE KEY-----\n",
+  "client_email": "krotic-mediastorage@tough-entry-259223.iam.gserviceaccount.com",
+  "client_id": "110049642932450491025",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/krotic-mediastorage%40tough-entry-259223.iam.gserviceaccount.com"
+}

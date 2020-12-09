@@ -1,0 +1,46 @@
+{
+    "instrucciones": 
+    [
+        {
+            "idInstruccion": "iks01",
+            "nombre": "SI",
+            "descripcion": "SI <Condicion>\n <Bloque de codigo> ",
+            "explicacion":"Equivalente al IF en progra",
+            "Parametros":"",
+            "tipo":"control"
+        },
+        {
+            "idInstruccion": "iks02",
+            "nombre": "SI SINO",
+            "descripcion": "SI:<condicion>\n<Bloque de codigo>\nSINO: <Bloque de codigo>",
+            "explicacion":"Equivalente al ELSE en progra",
+            "Parametros":"",
+            "tipo":"control"
+        },
+        {
+            "idInstruccion": "iks03",
+            "nombre": "MIENTRAS",
+            "descripcion": "MIENTRAS <Condicion>\n<Codigo repetir>",
+            "explicacion":"Equivalente al ELSE en progra",
+            "Parametros":"",
+            "tipo":"control"
+        },
+        {
+            "idInstruccion": "iks04",
+            "nombre": "INICIO",
+            "descripcion": "INICIO\n<Bloque codigo>",
+            "explicacion":"Inicia bloque de codigo",
+            "Parametros":"",
+            "tipo":"control"
+        },
+        {
+            "idInstruccion": "iks05",
+            "nombre": "FIN",
+            "descripcion": "<Bloque Codigo> FIN",
+            "explicacion":"Termina bloque de codigo",
+            "Parametros":"",
+            "tipo":"control"
+        }
+
+    ]
+}

@@ -1,0 +1,164 @@
+{
+    "instrucciones": 
+    [
+        {
+            "IDinstruccion":0,
+            "nombre":"AVANZAR 40cm",
+            "tipo":1,
+            "descripcion":"El robot avanza aproximadamente 30cm"
+        },
+        {
+            "IDinstruccion":1,
+            "nombre":"AVANZAR 10cm",
+            "tipo":1,
+            "descripcion":"El robot avanza aproximadamente 10cm"
+        },
+        {
+            "IDinstruccion":2,
+            "nombre":"RETROCEDER 20cm",
+            "tipo":1,
+            "descripcion":"El robot retrocede aproximadamente 20cm"
+        },
+        {
+            "IDinstruccion":3,
+            "nombre":"GIRAR 0°",
+            "tipo":1,
+            "descripcion":"El robot gira para pocisionarse en dirección de 0° o 360° basado en la pista"
+        },
+        {
+            "IDinstruccion":4,
+            "nombre":"GIRAR 45°",
+            "tipo":1,
+            "descripcion":"El robot gira para pocisionarse en dirección de 45° basado en la pista"
+        },
+        {
+            "IDinstruccion":5,
+            "nombre":"GIRAR 90°",
+            "tipo":1,
+            "descripcion":"El robot gira para pocisionarse en dirección de 90° basado en la pista"
+        },
+        {
+            "IDinstruccion":6,
+            "nombre":"GIRAR 135°",
+            "tipo":1,
+            "descripcion":"El robot gira para pocisionarse en dirección de 135° basado en la pista"
+        },
+        {
+            "IDinstruccion":7,
+            "nombre":"GIRAR 180°",
+            "tipo":1,
+            "descripcion":"El robot gira para pocisionarse en dirección de 180° basado en la pista"
+        },
+        {
+            "IDinstruccion":8,
+            "nombre":"GIRAR 225°",
+            "tipo":1,
+            "descripcion":"El robot gira para pocisionarse en dirección de 225° basado en la pista"
+        },
+        {
+            "IDinstruccion":9,
+            "nombre":"GIRAR 270°",
+            "tipo":1,
+            "descripcion":"El robot gira para pocisionarse en dirección de 270° basado en la pista"
+        },
+        {
+            "IDinstruccion":10,
+            "nombre":"GIRAR 315°",
+            "tipo":1,
+            "descripcion":"El robot gira para pocisionarse en dirección de 315° basado en la pista"
+        },
+        {
+            "IDinstruccion":11,
+            "nombre":"GIRAR 315°",
+            "tipo":1,
+            "descripcion":"El robot gira para pocisionarse en dirección de 315° basado en la pista"
+        },
+        {
+            "IDinstruccion":12,
+            "nombre":"SENSOR LUZ A",
+            "tipo":2,
+            "descripcion":"Obtener el valor del sensor de Luz A"
+        },
+        {
+            "IDinstruccion":13,
+            "nombre":"SENSOR LUZ B",
+            "tipo":2,
+            "descripcion":"Obtener el valor del sensor de Luz B"
+        },
+        {
+            "IDinstruccion":14,
+            "nombre":"ENCENDER LUCES",
+            "tipo":0,
+            "descripcion":"Enciende los LEDs en el robot"
+        },
+        {
+            "IDinstruccion":15,
+            "nombre":"APAGAR LUCES",
+            "tipo":0,
+            "descripcion":"Apaga los LEDs en el robot"
+        },
+        {
+            "IDinstruccion":16,
+            "nombre":"SI: ENTONCES:",
+            "tipo":3,
+            "descripcion":"Instrucción de control, ejecutar un bloque de código si se cumple una función",
+            "condicion":
+            {
+                "IDinstruccionTipo2":"",
+                "valor":0,
+                "operador":""
+            },
+            "bloqueSi" : []
+        },
+        {
+            "IDinstruccion":17,
+            "nombre":"SI: ENTONCES: SINO:",
+            "tipo":3,
+            "descripcion":"Instrucción de control, si se cumple una condición ENTONCES ejecutar el primer conjunto de instrucciones, SINO se cumple ejecutar el segundo conjunto",
+            "condicion":
+            {
+                "IDinstruccionTipo2":"",
+                "valor":0,
+                "operador":""
+            },
+            "bloqueSi" : [],
+            "bloqueNo" : []
+        },
+        {
+            "IDinstruccion":18,
+            "nombre":"REPETIR:",
+            "tipo":3,
+            "descripcion":"Instrucción de control, si se cumple una condición ENTONCES ejecutar el primer conjunto de instrucciones, SINO se cumple ejecutar el segundo conjunto",
+            "condicion":
+            {
+                "veces":0
+            },
+            "bloque" : []
+        },
+        {
+            "IDinstruccion":19,
+            "nombre":"MIENTRAS:",
+            "tipo":3,
+            "descripcion":"Instrucción de control, si se cumple una condición ENTONCES ejecutar el primer conjunto de instrucciones, SINO se cumple ejecutar el segundo conjunto",
+            "condicion":
+            {
+                "IDinstruccionTipo2":"",
+                "valor":0,
+                "operador":""
+            },
+            "bloque" : []
+        },
+        {
+            "IDinstruccion":20,
+            "nombre":"INICIO",
+            "tipo":0,
+            "descripcion":"Inicio de un programa o un bloque de instrucciones"
+        },
+        {
+            "IDinstruccion":21,
+            "nombre":"FIN",
+            "tipo":0,
+            "descripcion":"Fin de un programa o un bloque de instrucciones"
+        }
+    ]
+}
