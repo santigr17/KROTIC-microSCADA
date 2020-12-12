@@ -37,13 +37,21 @@ class LocalStorage {
     return modulosDisponibles;
   }
 
-  Future<List<Instruccion>> getInstrucciones() async {
+  Future<List<dynamic>> getInstrucciones() async {
     var strJson = await rootBundle.loadString('assets/data/instrucciones.json');
     var data = json.decode(strJson);
     List<Instruccion> disponibles = List<Instruccion>();
     if(data['instrucciones'] != null){
       data['instrucciones'].forEach((valor){
-        disponibles.add(new Instruccion.fromJson(valor));
+        if(valor["idInstruccion"] == "iks03"){
+          disponibles.add(new Mientras.fromJson(valor));
+        }
+        else if(valor["tipo"] == "condicion"){
+          disponibles.add(new Condicion.fromJson(valor));
+        }
+        else{
+          disponibles.add(new Instruccion.fromJson(valor));
+        }
       });
     }
     return disponibles;

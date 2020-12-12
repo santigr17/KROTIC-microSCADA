@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/html_parser.dart';
+import 'package:flutter_html/style.dart';
 import 'package:remotekrotic_app/bloc/editorBloc/editorBloc.dart';
 import 'package:remotekrotic_app/bloc/editorBloc/editorEvent.dart';
 import 'package:remotekrotic_app/bloc/editorBloc/editorState.dart';
@@ -38,7 +40,15 @@ class EditorPrograma extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                          child: ModsDisponibles(listado: state.equipos, robot: state.robot)
+                          child: Column(
+                            children: [
+                              Text(
+                                "MÓDULOS DISPONIBLES",
+                                style:Theme.of(context).textTheme.subtitle2,
+                              ),
+                              Expanded(child: ModsDisponibles(listado: state.equipos, robot: state.robot)),
+                            ],
+                          )
                         ),
                         Expanded(
                           child: Image(image: AssetImage('assets/images/kroticbasic.jpg'))
@@ -76,10 +86,11 @@ class EditorPrograma extends StatelessWidget {
                 children: <Widget>[
                   Flexible(child:Encabezado(btnEnviar: true, robot: state.prograActual.robot)),
                   Expanded(
-                    flex: 2,
+                    // flex: 2,
                     child: AreaEditor(
-                      codigo: state.prograActual,
+                      programa: state.prograActual,
                       disponibles: state.disponibles,
+                      vistaCodigo: state.codigo,
                     ),
                   )
                 ],

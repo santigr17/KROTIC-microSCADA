@@ -14,7 +14,7 @@ class EsperandoDatos extends EditorState {}
 
 class ErrorRobot extends EditorState {
   final String msgError;
-  ErrorRobot(@required this.msgError);
+  ErrorRobot(this.msgError);
 }
 
 class Equipando extends EditorState
@@ -27,6 +27,7 @@ class Equipando extends EditorState
 class Programando extends EditorState 
 {
   final List<Instruccion> disponibles;
+  final List<dynamic> codigo;
   final Programa prograActual;
-  Programando(this.disponibles, this.prograActual);
+  Programando(this.disponibles, this.prograActual, this.codigo);
 }

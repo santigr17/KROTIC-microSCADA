@@ -10,60 +10,80 @@ import 'package:remotekrotic_app/pages/instruccion_page.dart';
 
 class AreaEditor extends StatelessWidget 
 {
-  final Programa codigo;
-  final List<Instruccion> disponibles;
+  final Programa programa;
+  final List<dynamic> vistaCodigo;
+  final List<dynamic> disponibles;
 
-  const AreaEditor({Key key, this.codigo, this.disponibles}) : super(key: key);
+  const AreaEditor({Key key, this.programa, this.disponibles, this.vistaCodigo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var _editorBloc = BlocProvider.of<EditorBloc>(context);
     return Container(
+      margin: EdgeInsets.only(top:10),
       child: Row(
         children: [
-          Flexible(child: InstsDisponibles(listado: disponibles,)),
+          Flexible(child: Column(
+            children: [
+              Text(
+                "FUNCIONES DISPONIBLES",
+                style:Theme.of(context).textTheme.subtitle2,
+              ),
+              Expanded(child: InstsDisponibles(listado: disponibles,)),
+            ],
+          )),
           Expanded(
-            flex: 2,
-            child: DragTarget<Instruccion>(
+            // flex: 2,
+            child: DragTarget<dynamic>(
               builder: (BuildContext context, List<dynamic> candidateData, List<dynamic> rejectedData)
               {
                 return Container(
                   child: Center (
-                    child:  codigo.instrucciones.length != 0 
-                    ? BloqueCodigo(codigo:codigo)
+                    child:  programa.instrucciones.length != 0 
+                    ? BloqueCodigo(codigo:this.vistaCodigo)
                     : Container (child: Text("Arrastre las funciones para formar el codigo"),)
                   ),
                 );
               },
-              onWillAccept: (data) {return true;},
+              onWillAccept: (data) {
+                bool result = true;
+                if(programa.finalizado){
+                  // _editorBloc.add(ErrorFaltaCondicion());
+                  result = false;
+                }
+                else if((data as Instruccion).idInstruccion == mientrasID){
+                  print("WHILE DATA");
+                  if(this.programa.ciclos >= 2){
+                    // _editorBloc.add(ErrorFaltaCondicion());
+                    print("Maxima anidacion");
+                    result = false;
+                  }
+                }
+                return result;
+              },
               onAccept: (data) {
-                print("Instruccion aceptada");
-                _editorBloc.add(AgregarInstruccion(data));
+                if(data is Mientras){
+                  print("Calling Mientras EVENT");
+                  _editorBloc.add(AgregarMientras(data));
+                }
+                else if(data is Condicion){
+                  print("Calling Condicion EVENT");
+                  _editorBloc.add(AgregarCondicion(data));
+                }
+                else{
+                  print("Calling Instruction EVENT");
+                  _editorBloc.add(AgregarInstruccion(data));
+                }
                 return true;
               },
             ),)
         ],),
       );
   }
-
 }
 
-class BloqueCodigo extends StatelessWidget{
-  final Programa codigo;
-  const BloqueCodigo({Key key, this.codigo}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (BuildContext context, int index) {
-        return InstruccionItem(item:codigo.instrucciones[index]);
-
-      },
-      itemCount: this.codigo.instrucciones.length, 
-      separatorBuilder: (BuildContext context, int index) => Divider()
-    );
-  }
-}
-
-
+/**
+ * Lista de instrucciones disponibles para programar
+ */ 
 class InstsDisponibles extends StatelessWidget {
   final List<Instruccion> listado;
   const InstsDisponibles({Key key, this.listado}) : super(key: key);
@@ -74,8 +94,8 @@ class InstsDisponibles extends StatelessWidget {
       padding: const EdgeInsets.all(1),
       itemCount: listado.length,
       itemBuilder: (context, int indice) {
-        return Draggable<Instruccion>(
-          data: listado[indice],
+        return Draggable<dynamic>(
+          data: listado[indice]   ,
           feedback: Container(
               child: Card(
                 margin: EdgeInsets.all(5),
@@ -86,7 +106,7 @@ class InstsDisponibles extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left:10),
                   child: Text(
-                    listado[indice].nombre),
+                    listado[indice].descripcion),
                 ),
             ),
         );
@@ -95,3 +115,4 @@ class InstsDisponibles extends StatelessWidget {
    }
   }
   
+

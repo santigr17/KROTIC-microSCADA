@@ -8,7 +8,10 @@ class Programa {
   String fecha;
   String estado;
   List<Modulo> robot;
-  List<Instruccion> instrucciones;
+  List<dynamic> instrucciones;
+  // Variables para controlar los ciclos
+  int ciclos = 0;
+  bool finalizado = false;
   Programa({
     this.idprograma,
     this.nombrePrograma,

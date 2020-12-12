@@ -31,7 +31,7 @@
             "descripcion": "INICIO\n<Bloque codigo>",
             "explicacion":"Inicia bloque de codigo",
             "Parametros":"",
-            "tipo":"control"
+            "tipo":"inicio"
         },
         {
             "idInstruccion": "iks05",
@@ -39,8 +39,17 @@
             "descripcion": "<Bloque Codigo> FIN",
             "explicacion":"Termina bloque de codigo",
             "Parametros":"",
-            "tipo":"control"
+            "tipo":"final"
+        },
+        {
+            "idInstruccion": "iks06",
+            "nombre": "REPETIR 5 VECES",
+            "descripcion": "REPETIR <MIENTRAS> 5 VECES",
+            "explicacion":"Repetir 5 veces bloque de codigo",
+            "Parametros":"",
+            "tipo":"condicion"
         }
+
 
     ]
 }

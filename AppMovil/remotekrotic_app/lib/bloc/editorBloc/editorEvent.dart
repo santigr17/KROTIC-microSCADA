@@ -33,7 +33,8 @@ class DesequiparModulo extends EditorEvent{
 
 class ProgramarRobot extends EditorEvent{
   final List<Modulo> robot;
-  ProgramarRobot(this.robot);
+  final bool finalizado;
+  ProgramarRobot(this.robot, {this.finalizado = false});
   @override
   List<Object> get props => [robot];
 }
@@ -45,9 +46,31 @@ class AgregarInstruccion extends EditorEvent{
   List<Object> get props => [newInstruccion];
 }
 
+class AgregarMientras extends EditorEvent{ 
+  final Mientras newInstruccion;
+  AgregarMientras(this.newInstruccion);
+  @override
+  List<Object> get props => [newInstruccion];
+}
+class AgregarCondicion extends EditorEvent{ 
+  final Instruccion newInstruccion;
+  AgregarCondicion(this.newInstruccion);
+  @override
+  List<Object> get props => [newInstruccion];
+}
+
+class ErrorFaltaCondicion extends EditorEvent{
+  ErrorFaltaCondicion();
+  @override
+  List<Object> get props => [];
+}
+
+
 class MostrarError extends EditorEvent{
   final String error;
   MostrarError(this.error);
   @override
   List<Object> get props => [error];
 }
+
+
