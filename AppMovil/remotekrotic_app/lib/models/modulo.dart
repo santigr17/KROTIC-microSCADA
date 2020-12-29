@@ -1,29 +1,29 @@
+import 'package:remotekrotic_app/pages/instruccion_page.dart';
+
 import 'instruccion.dart';
 
 class Modulo {
-  bool _selecionado = false;
-  int _idModulo;
-  String _nombre;
-  String _descripcion;
-  List<Instruccion> _instruccionesDisponibles;
+  bool selecionado = false;
+  int idModulo;
+  String nombre;
+  String descripcion;
+  List<Instruccion> comandos;
 
-  Modulo(this._idModulo, this._descripcion, this._nombre);
+  Modulo(this.idModulo, this.descripcion, this.nombre);
   
   Modulo.fromJson(Map<String, dynamic> json)
   {
-    this._nombre = json['nombre'];
-    this._idModulo = json['idModulo'];
-    this._descripcion = json['descripcion'];
-  }
-
-  bool get check => _selecionado;
-  int get idModulo => _idModulo;
-  String get nombre => _nombre;
-  String get descripcion => _descripcion;
-  List<Instruccion> get disponibles => _instruccionesDisponibles;
-  
-  
+    this.nombre = json['nombre'];
+    this.idModulo = json['idModulo'];
+    this.descripcion = json['descripcion'];
+    this.comandos = [];
+    if(json['instrucciones'] != null) {
+      json['instrucciones'].forEach((value){
+        comandos.add(new Instruccion.fromJson(value));
+      });
+    }
+  } 
   void seleccionar(bool check) {
-    this._selecionado = check;
+    this.selecionado = check;
   }  
 }

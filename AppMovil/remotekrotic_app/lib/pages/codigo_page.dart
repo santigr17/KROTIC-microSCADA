@@ -19,31 +19,45 @@ class AreaEditor extends StatelessWidget
   Widget build(BuildContext context) {
     var _editorBloc = BlocProvider.of<EditorBloc>(context);
     return Container(
-      margin: EdgeInsets.only(top:10),
+      // margin: EdgeInsets.only(top:10),
       child: Row(
-        children: [
-          Flexible(child: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Column(
             children: [
               Text(
                 "FUNCIONES DISPONIBLES",
                 style:Theme.of(context).textTheme.subtitle2,
               ),
               Expanded(child: InstsDisponibles(listado: disponibles,)),
-            ],
-          )),
+            ],)
+          ),
           Expanded(
-            // flex: 2,
+            flex: 2,
             child: DragTarget<dynamic>(
-              builder: (BuildContext context, List<dynamic> candidateData, List<dynamic> rejectedData)
-              {
-                return Container(
-                  child: Center (
-                    child:  programa.instrucciones.length != 0 
-                    ? BloqueCodigo(codigo:this.vistaCodigo)
-                    : Container (child: Text("Arrastre las funciones para formar el codigo"),)
-                  ),
-                );
-              },
+            builder: (BuildContext context, List<dynamic> candidateData, List<dynamic> rejectedData)
+            {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "PROGRAMA PARA EL ROBOT KROTIC",
+                    style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                  if(programa.instrucciones.length == 0)
+                    Flexible(
+                      flex: 1,
+                      child: Center(child: Text("ARRASTRE LAS FUNCIONES AQUÍ PARA FORMAR EL PROGRAMA"),)
+                    ),
+                  if(programa.instrucciones.length != 0)
+                    Expanded(
+                      flex: 3,
+                      child: BloqueCodigo(codigo:this.vistaCodigo)
+                    )
+                ]
+              );
+            },
               onWillAccept: (data) {
                 bool result = true;
                 if(programa.finalizado){
@@ -75,7 +89,8 @@ class AreaEditor extends StatelessWidget
                 }
                 return true;
               },
-            ),)
+            ),
+          )
         ],),
       );
   }

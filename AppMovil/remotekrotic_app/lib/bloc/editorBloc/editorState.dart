@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 import 'package:remotekrotic_app/models/instruccion.dart';
 import 'package:remotekrotic_app/models/modulo.dart';
 import 'package:remotekrotic_app/models/programa.dart';
@@ -10,7 +9,7 @@ abstract class EditorState extends Equatable {
 
 class Inicial extends EditorState {}
 
-class EsperandoDatos extends EditorState {}
+class Cargando extends EditorState {}
 
 class ErrorRobot extends EditorState {
   final String msgError;

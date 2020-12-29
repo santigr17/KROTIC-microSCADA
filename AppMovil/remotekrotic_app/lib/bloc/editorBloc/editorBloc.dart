@@ -27,7 +27,7 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
   @override
   Stream<EditorState> mapEventToState(EditorEvent event) async* {
     if(event is CargarDisponibles){
-      yield EsperandoDatos();
+      yield Cargando();
        this.modsDisponibles = await  _storageService.getModulos();
        this.instDisponibles = await  _storageService.getInstrucciones();
         if(this.instDisponibles != null && this.modsDisponibles != null){
@@ -40,12 +40,16 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
     }
     if(event is EquiparModulo){
       this._newPrograma.robot.add(event.mod);
-      yield EsperandoDatos();
+      if(event.mod.comandos != null){
+        print("agregando instrucciones del modulo: " + event.mod.nombre);
+        this.instDisponibles.addAll(event.mod.comandos);
+      }
+      yield Cargando();
       yield Equipando(this.modsDisponibles,this._newPrograma.robot);
     }
     if(event is DesequiparModulo){
       this._newPrograma.robot.remove(event.mod);
-      yield EsperandoDatos();
+      yield Cargando();
       yield Equipando(this.modsDisponibles,this._newPrograma.robot);
     }
     if(event is ProgramarRobot){
@@ -57,7 +61,7 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
       }
     }
     if(event is AgregarMientras){
-      yield EsperandoDatos();
+      yield Cargando();
       Mientras instancia = Mientras.clone(event.newInstruccion); //Deep copy del objeto mientras
       instancia.bloque = [];
       instancia.anidado = this._newPrograma.ciclos;
@@ -71,7 +75,7 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
     }
 
     if(event is AgregarCondicion){
-      yield EsperandoDatos();
+      yield Cargando();
       if(this._esperarCondicion){
         Mientras ciclo = this._bloqueActual.last.last;
         ciclo.condicion = event.newInstruccion;
@@ -87,7 +91,7 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
     
     if(event is AgregarInstruccion)
     {
-      yield EsperandoDatos();
+      yield Cargando();
       if(!this._esperarCondicion)
       {
         Instruccion instancia = Instruccion.clone(event.newInstruccion);
@@ -110,6 +114,10 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
       {
         this.add(MostrarError("ESCOJA UNA CONDICION MALDITO"));
       }
+    }
+    if(event is EnviarPrograma){
+      print("Intentando enviar ");
+      yield Cargando();
     }
   }
 }

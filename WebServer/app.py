@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 app.config['MONGODB_SETTINGS'] = {
     'db': 'krotic-db',
-    # 'host': '127.0.0.1',
-    # 'port': 27017
+    'host': '127.0.0.1',
+    'port': 27017
 }
 db = MongoEngine()
 db.init_app(app)
@@ -56,5 +56,13 @@ def delete_record():
         user.delete()
     return jsonify(user.to_json())
 
+@app.route('/programa/', methods=['POST'])
+def create_programa():
+    dataPrograma = json.loads(request.data)
+    try:
+
+
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)

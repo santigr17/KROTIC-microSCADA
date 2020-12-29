@@ -1,5 +1,6 @@
 
 import 'package:equatable/equatable.dart';
+import 'package:remotekrotic_app/bloc/editorBloc/editorBloc.dart';
 import 'package:remotekrotic_app/models/instruccion.dart';
 import 'package:remotekrotic_app/models/modulo.dart';
 
@@ -71,6 +72,11 @@ class MostrarError extends EditorEvent{
   MostrarError(this.error);
   @override
   List<Object> get props => [error];
+}
+
+class EnviarPrograma extends EditorEvent {
+  @override
+  List<Object> get props => [];
 }
 
 

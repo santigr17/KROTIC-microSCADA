@@ -2,22 +2,9 @@
     "modulos": 
     [
         {
-        "idModulo": 0,
-        "codigo": "mks00",
-        "nombre": "Comunicación",
-        "descripcion": "Comunicación con el servidor",
-        "instrucciones":
-            [
-                {
-                    "idInstruccion": "imks0001",
-                    "nombre": "Iniciar Programa",
-                    "descripcion": "Ejecuta el programa en el robot"
-                }
-            ]
-        },
-        {
             "idModulo": 1,
             "codigo": "mks01",
+            "estado": "disponible",
             "nombre": "Desplazamiento",
             "descripcion": "Permite moverse en 2D",
             "instrucciones":
@@ -48,6 +35,7 @@
         "idModulo": 2,
         "codigo": "mks02",
         "nombre": "Luces",
+        "estado": "disponible",
         "descripcion": "Manejo de los LEDs",
         "instrucciones":
             [
@@ -63,6 +51,7 @@
         "codigo": "mks03",
         "nombre": "Sensor de Luz",
         "descripcion": "Medición de la fotoresistencia",
+        "estado": "disponible",
         "instrucciones":
             [
                 {

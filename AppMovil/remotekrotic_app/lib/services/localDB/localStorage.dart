@@ -26,7 +26,7 @@ class LocalStorage {
   }
 
   Future<List<Modulo>> getModulos() async {
-    var strJson = await rootBundle.loadString("assets/data/modules.json");
+    var strJson = await rootBundle.loadString("assets/data/modulos.json");
     var data = json.decode(strJson);
     List<Modulo> modulosDisponibles = new List<Modulo>();
     if(data['modulos'] != null) {

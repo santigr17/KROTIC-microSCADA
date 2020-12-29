@@ -34,23 +34,33 @@ class EditorPrograma extends StatelessWidget {
             if(state is Equipando){
               return Column(
                 children: <Widget>[
-                  Expanded(child: Encabezado(btnEnviar: false)),
+                  Flexible(
+                    flex: 1,
+                    child: Encabezado(btnEnviar: false)),
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Row(
                       children: <Widget>[
                         Expanded(
+                          flex: 1,
                           child: Column(
                             children: [
-                              Text(
-                                "MÓDULOS DISPONIBLES",
-                                style:Theme.of(context).textTheme.subtitle2,
+                              Flexible(
+                                flex: 1,
+                                child: Text(
+                                  "MÓDULOS DISPONIBLES",
+                                  style:Theme.of(context).textTheme.subtitle2,
+                                ),
                               ),
-                              Expanded(child: ModsDisponibles(listado: state.equipos, robot: state.robot)),
+                              Expanded(
+                                flex: 3,
+                                child: ModsDisponibles(listado: state.equipos, robot: state.robot)
+                              ),
                             ],
                           )
                         ),
                         Expanded(
+                          flex: 1,
                           child: Image(image: AssetImage('assets/images/kroticbasic.jpg'))
                           )
                         ]
@@ -84,9 +94,11 @@ class EditorPrograma extends StatelessWidget {
             {
               return Column(
                 children: <Widget>[
-                  Flexible(child:Encabezado(btnEnviar: true, robot: state.prograActual.robot)),
+                  Flexible(
+                    flex: 1,
+                    child:Encabezado(btnEnviar: true, robot: state.prograActual.robot)),
                   Expanded(
-                    // flex: 2,
+                    flex: 5,
                     child: AreaEditor(
                       programa: state.prograActual,
                       disponibles: state.disponibles,
@@ -138,7 +150,9 @@ class Encabezado extends StatelessWidget{
         if(this.btnEnviar)
           Flexible(
               child: ElevatedButton.icon(
-              onPressed: () => {}, //inicioBloc.add(CrearProgra(estudiante))
+              onPressed: () => {
+                _editorBloc.add(EnviarPrograma())
+              }, //inicioBloc.add(CrearProgra(estudiante))
               label: Text("ENVIAR"),
               icon: Icon(Icons.send_outlined),
             ),
