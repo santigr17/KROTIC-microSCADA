@@ -1,6 +1,6 @@
  
  import 'package:remotekrotic_app/Exceptions/authentication_exception.dart';
-import 'package:remotekrotic_app/models/usuarios_model.dart';
+import 'package:remotekrotic_app/modelos/usuarios_model.dart';
 
 
 abstract class AuthenticationService {

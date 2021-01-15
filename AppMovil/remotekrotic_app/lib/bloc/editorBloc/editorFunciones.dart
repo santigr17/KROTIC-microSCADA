@@ -1,5 +1,5 @@
-import 'package:remotekrotic_app/models/instruccion.dart';
-import 'package:remotekrotic_app/models/modulo.dart';
+import 'package:remotekrotic_app/modelos/instruccion.dart';
+import 'package:remotekrotic_app/modelos/modulo.dart';
 
 List<Instruccion> comandosSelecc(List<Modulo> modulos) {
   List<Instruccion> temp = [];

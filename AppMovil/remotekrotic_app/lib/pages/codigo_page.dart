@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:remotekrotic_app/bloc/editorBloc/editorBloc.dart';
 import 'package:remotekrotic_app/bloc/editorBloc/editorEvent.dart';
-import 'package:remotekrotic_app/models/instruccion.dart';
-import 'package:remotekrotic_app/models/programa.dart';
+import 'package:remotekrotic_app/modelos/instruccion.dart';
+import 'package:remotekrotic_app/modelos/programa.dart';
 import 'package:remotekrotic_app/pages/instruccion_page.dart';
 
 
@@ -64,7 +64,7 @@ class AreaEditor extends StatelessWidget
                   // _editorBloc.add(ErrorFaltaCondicion());
                   result = false;
                 }
-                else if((data as Instruccion).idInstruccion == mientrasID){
+                else if((data as Instruccion).codigo == mientrasCode){ //mientrasCode es una constante en modelos/instruccion
                   print("WHILE DATA");
                   if(this.programa.ciclos >= 2){
                     // _editorBloc.add(ErrorFaltaCondicion());
@@ -76,7 +76,8 @@ class AreaEditor extends StatelessWidget
               },
               onAccept: (data) {
                 if(data is Mientras){
-                  print("Calling Mientras EVENT");
+                  print("Calling Mientras EVENT>");
+                  print(data.codigo);
                   _editorBloc.add(AgregarMientras(data));
                 }
                 else if(data is Condicion){

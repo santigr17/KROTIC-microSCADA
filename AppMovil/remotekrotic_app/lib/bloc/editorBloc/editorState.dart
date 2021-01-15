@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:remotekrotic_app/models/instruccion.dart';
-import 'package:remotekrotic_app/models/modulo.dart';
-import 'package:remotekrotic_app/models/programa.dart';
+import 'package:remotekrotic_app/modelos/instruccion.dart';
+import 'package:remotekrotic_app/modelos/modulo.dart';
+import 'package:remotekrotic_app/modelos/programa.dart';
 
 abstract class EditorState extends Equatable {
   List<Object> get props => [];

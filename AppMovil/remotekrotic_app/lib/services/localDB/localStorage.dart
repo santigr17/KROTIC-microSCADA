@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:remotekrotic_app/models/instruccion.dart';
-import 'package:remotekrotic_app/models/modulo.dart';
-import 'package:remotekrotic_app/models/programa.dart';
+import 'package:remotekrotic_app/modelos/instruccion.dart';
+import 'package:remotekrotic_app/modelos/modulo.dart';
+import 'package:remotekrotic_app/modelos/programa.dart';
 
 class LocalStorage {
 
@@ -43,7 +43,8 @@ class LocalStorage {
     List<Instruccion> disponibles = List<Instruccion>();
     if(data['instrucciones'] != null){
       data['instrucciones'].forEach((valor){
-        if(valor["idInstruccion"] == "iks03"){
+        if(valor["codigo"] == "iks03"){
+          print("Loading while");
           disponibles.add(new Mientras.fromJson(valor));
         }
         else if(valor["tipo"] == "condicion"){

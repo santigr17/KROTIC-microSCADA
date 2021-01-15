@@ -2,14 +2,14 @@
 import 'programa.dart';
 
 abstract class Usuario {
-  int userID;
+  int idUsuario;
   String username;
   String password;
   String nombre;
   int tipoUsuario;
   String institucion;
   Usuario({
-    this.userID,
+    this.idUsuario,
     this.username,
     this.password,
     this.nombre,
@@ -22,7 +22,7 @@ class Estudiante extends Usuario {
   List<Programa> programas;
   
   Estudiante (int userId, String nombre, String username, String password) 
-    : super(userID: userId, nombre: nombre, username: username, password: password, tipoUsuario :1);
+    : super(idUsuario: userId, nombre: nombre, username: username, password: password, tipoUsuario :1);
 
   void setProgramas(List<Programa> listaProgramas) {
     this.programas = listaProgramas;

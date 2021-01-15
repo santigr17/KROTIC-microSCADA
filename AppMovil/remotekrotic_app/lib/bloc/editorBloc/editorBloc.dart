@@ -1,10 +1,13 @@
 
 import 'package:bloc/bloc.dart';
-import 'package:remotekrotic_app/models/instruccion.dart';
-import 'package:remotekrotic_app/models/modulo.dart';
-import 'package:remotekrotic_app/models/programa.dart';
-import 'package:remotekrotic_app/pages/instruccion_page.dart';
+import 'package:remotekrotic_app/modelos/instruccion.dart';
+import 'package:remotekrotic_app/modelos/modulo.dart';
+import 'package:remotekrotic_app/modelos/programa.dart';
+import 'package:remotekrotic_app/modelos/usuarios_model.dart';
+import 'package:remotekrotic_app/services/api_manager.dart';
 import 'package:remotekrotic_app/services/localDB/localStorage.dart';
+
+import 'package:intl/intl.dart';
 
 import 'editorEvent.dart';
 import 'editorState.dart';
@@ -17,11 +20,14 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
   List<dynamic> _vistaCodigo = [];
   List<List<dynamic>> _bloqueActual = [];
   Programa _newPrograma;
+  ApiManager api = ApiManager();
+  Usuario _usuario;
   
-  EditorBloc(LocalStorage storageService) : super(Inicial()) {
+  EditorBloc(LocalStorage storageService, Usuario user) : super(Inicial()) {
     _storageService = storageService;
     this._newPrograma = Programa(instrucciones: []);
     this._bloqueActual.add(this._newPrograma.instrucciones);
+    this._usuario = user;
   }
 
   @override
@@ -30,6 +36,8 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
       yield Cargando();
        this.modsDisponibles = await  _storageService.getModulos();
        this.instDisponibles = await  _storageService.getInstrucciones();
+       // Asignando id del programa
+       this._newPrograma.idprograma = instDisponibles.length;
         if(this.instDisponibles != null && this.modsDisponibles != null){
           _newPrograma.robot=[];
           yield Equipando(this.modsDisponibles, _newPrograma.robot);
@@ -60,12 +68,20 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
         yield ErrorRobot("Se deben agregar modulos para que el robot funcione");
       }
     }
+
+    if(event is EditarNombre){
+      this._newPrograma.nombrePrograma = event.nombre;
+      print(this._newPrograma.nombrePrograma);
+    }
+
+
     if(event is AgregarMientras){
       yield Cargando();
       Mientras instancia = Mientras.clone(event.newInstruccion); //Deep copy del objeto mientras
       instancia.bloque = [];
       instancia.anidado = this._newPrograma.ciclos;
-      print("ADDING WHILE");
+      print("ADDING WHILE CODE:");
+      print(event.newInstruccion.codigo);
       this._bloqueActual.last.add(instancia);
       this._newPrograma.ciclos++;
       this._esperarCondicion = true;
@@ -96,7 +112,7 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
       {
         Instruccion instancia = Instruccion.clone(event.newInstruccion);
         instancia.anidado = this._newPrograma.ciclos;
-        if(instancia.idInstruccion == finID){
+        if(instancia.codigo == finCode){ //finCode es una constante en modelos/instrucciones.dart
           if(this._newPrograma.ciclos > 0){
             this._newPrograma.ciclos--;
             this._bloqueActual.removeLast();
@@ -118,6 +134,13 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
     if(event is EnviarPrograma){
       print("Intentando enviar ");
       yield Cargando();
+      var now  = DateTime.now();
+      DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+      this._newPrograma.fechaCreacion = dateFormat.format(now);
+      var jsonProgra = this._newPrograma.toJson(this._usuario.idUsuario);
+      print(jsonProgra);
+      await this.api.postProgram(jsonProgra);
+      
     }
   }
 }

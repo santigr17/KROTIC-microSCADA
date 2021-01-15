@@ -25,7 +25,7 @@
             "nombre": "MIENTRAS",
             "descripcion": "MIENTRAS <Condicion>\n<Codigo repetir>",
             "explicacion":"Equivalente al ELSE en progra",
-            "Parametros":"",
+            "condicion":"",
             "tipo":"control"
         },
         {

@@ -1,0 +1,19 @@
+{
+    "id":0,
+    "idUser":0,
+    "fecha":"6/1/2021",
+    "modulos":[1, 3, 4, 5],
+    "instrucciones":[
+        1,
+        {
+            "id": 3,
+            "cond": 6,
+            "param":5,
+            "bloque": [
+                101,
+                103
+            ]
+       },
+       2
+    ]
+ }

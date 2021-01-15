@@ -1,0 +1,11 @@
+pip3 install opencv-contrib-python
+sudo apt-get install -y libatlas-base-dev libhdf5-dev libhdf5-serial-dev libatlas-base-dev libjasper-dev  libqtgui4  libqt4-test
+pip3 install paho-mqtt
+
+pip3 install pyrebase
+pip3 install httplib2==0.15.0
+
+ERROR
+lsmod
+sudo rmmod uvcvideo
+sudo modprobe uvcvideo nodrop=1 timeout=5000

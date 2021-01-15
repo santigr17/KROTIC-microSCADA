@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:remotekrotic_app/bloc/editorBloc/editorBloc.dart';
-import 'package:remotekrotic_app/bloc/editorBloc/editorEvent.dart';
-import 'package:remotekrotic_app/models/instruccion.dart';
+import 'package:remotekrotic_app/modelos/instruccion.dart';
 
 // CONSTANTE
 var styleCodigo = TextStyle(
@@ -20,11 +17,12 @@ class BloqueCodigo extends StatelessWidget{
   const BloqueCodigo({Key key, this.codigo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // List<dynamic> toShow = getListaSimple(this.codigo, 0);
     print(this.codigo);
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
-        if((codigo[index] as Instruccion).idInstruccion == "iks03" ){
+        print("Codigo:codigo");
+        print((codigo[index] as Instruccion).codigo);
+        if((codigo[index] as Instruccion).codigo == "iks03" ){
           return MientrasItem(item:(codigo[index] as Mientras));
         }
         else{
@@ -40,8 +38,6 @@ class InstruccionItem extends StatelessWidget {
   const InstruccionItem({Key key, this.item}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    print("ANIDADO:");
-    print(this.item.anidado);
     var color = Colors.blue;
     if(this.item.anidado == 1){
       color  = Colors.amber;

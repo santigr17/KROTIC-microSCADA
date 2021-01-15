@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:remotekrotic_app/models/usuarios_model.dart';
+import 'package:remotekrotic_app/modelos/usuarios_model.dart';
 import 'package:remotekrotic_app/pages/editor_page.dart';
 import 'package:remotekrotic_app/pages/inicio_page.dart';
 import 'package:remotekrotic_app/pages/login_page.dart';

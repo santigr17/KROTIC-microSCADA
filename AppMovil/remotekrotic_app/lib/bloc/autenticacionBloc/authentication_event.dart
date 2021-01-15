@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:remotekrotic_app/models/usuarios_model.dart';
+import 'package:remotekrotic_app/modelos/usuarios_model.dart';
 
 abstract class AuthenticationEvent extends Equatable {
   const AuthenticationEvent();

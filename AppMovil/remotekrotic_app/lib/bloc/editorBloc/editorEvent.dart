@@ -1,8 +1,8 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:remotekrotic_app/bloc/editorBloc/editorBloc.dart';
-import 'package:remotekrotic_app/models/instruccion.dart';
-import 'package:remotekrotic_app/models/modulo.dart';
+import 'package:remotekrotic_app/modelos/instruccion.dart';
+import 'package:remotekrotic_app/modelos/modulo.dart';
 
 abstract class EditorEvent extends Equatable{}
 // final Usuario user;
@@ -40,6 +40,13 @@ class ProgramarRobot extends EditorEvent{
   List<Object> get props => [robot];
 }
 
+class EditarNombre extends EditorEvent {
+  final String nombre;
+  EditarNombre(this.nombre);
+  @override
+  List<Object> get props => [nombre];
+}
+
 class AgregarInstruccion extends EditorEvent{
   final Instruccion newInstruccion;
   AgregarInstruccion(this.newInstruccion);
@@ -65,7 +72,6 @@ class ErrorFaltaCondicion extends EditorEvent{
   @override
   List<Object> get props => [];
 }
-
 
 class MostrarError extends EditorEvent{
   final String error;

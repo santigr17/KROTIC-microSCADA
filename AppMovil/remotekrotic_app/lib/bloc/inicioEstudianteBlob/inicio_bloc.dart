@@ -19,7 +19,7 @@ class InicioBloc extends Bloc<InicioEvent,InicioState>{
     if(event is CargarDatos){
       yield EsperandoDatos();
       if(event.user.tipoUsuario == 1){
-        final programas = await  _storageService.getListProgramas(event.user.userID);
+        final programas = await  _storageService.getListProgramas(event.user.idUsuario);
         if(programas != null){
           this.add(ProgramasCargados(lista: programas, user: event.user));
         }

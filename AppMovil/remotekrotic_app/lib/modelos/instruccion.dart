@@ -1,22 +1,24 @@
 /**
  * Constantes para comparaciones
  */
-const String mientrasID = "iks03";
-const String finID = "iks05";
+const String mientrasCode = "iks03";
+const String finCode = "iks05";
 
 class Instruccion {
-  final String idInstruccion;
+  final int idInstruccion;
+  final String codigo;
   final String nombre;
   final String descripcion;
   final String tipo;
   int anidado = 0;
-  Instruccion({this.idInstruccion, this.nombre, this.descripcion, this.tipo});
+  Instruccion({this.idInstruccion, this.codigo, this.nombre, this.descripcion, this.tipo});
   factory Instruccion.fromJson(Map<String, dynamic> json){
     return Instruccion(
-    idInstruccion : json["idInstruccion"],
-    descripcion : json["descripcion"],
-    nombre : json["nombre"],
-    tipo : json["tipo"]
+      idInstruccion : json["idInstruccion"],
+      codigo: json["codigo"],
+      descripcion : json["descripcion"],
+      nombre : json["nombre"],
+      tipo : json["tipo"]
     );
   }
   factory Instruccion.clone(Instruccion template){
@@ -24,16 +26,22 @@ class Instruccion {
       nombre: template.nombre,
       idInstruccion: template.idInstruccion,
       tipo: template.tipo,
-      descripcion: template.descripcion
+      descripcion: template.descripcion,
+      codigo: template.codigo
     );
   }
 }
 
 class Condicion extends Instruccion {
-  Condicion({String idInstruccion, String nombre, String descripcion,  String tipo}):super(idInstruccion: idInstruccion, nombre: nombre, descripcion: descripcion, tipo: tipo);
+  // Constructor principal
+  Condicion({int idInstruccion, String codigo, String nombre, String descripcion,  String tipo})
+  :super(idInstruccion: idInstruccion, nombre: nombre, descripcion: descripcion, tipo: tipo, codigo: codigo);
+  
+  
   factory Condicion.fromJson(Map<String, dynamic> json){
     return Condicion(
       idInstruccion : json["idInstruccion"],
+      codigo: json["codigo"],
       descripcion : json["descripcion"],
       nombre : json["nombre"],
       tipo : json["tipo"]
@@ -41,8 +49,9 @@ class Condicion extends Instruccion {
   }
   factory Condicion.clone(Mientras template){
     return Condicion(
-      nombre: template.nombre,
       idInstruccion: template.idInstruccion,
+      codigo: template.codigo,
+      nombre: template.nombre,
       tipo: template.tipo,
       descripcion: template.descripcion
     );
@@ -52,10 +61,21 @@ class Condicion extends Instruccion {
 class Mientras extends Instruccion {
   Instruccion condicion;
   List<dynamic> bloque = [];
-  Mientras({String idInstruccion, String nombre, String descripcion,  String tipo, this.condicion, this.bloque}):super(idInstruccion: idInstruccion, nombre: nombre, descripcion: descripcion, tipo: tipo);
+  
+  Mientras({
+    int idInstruccion,
+    String codigo,
+    String nombre, 
+    String descripcion, 
+    String tipo,
+    this.condicion, 
+    this.bloque})
+    :super(idInstruccion: idInstruccion, nombre: nombre, descripcion: descripcion, tipo: tipo, codigo: codigo);
+  
   factory Mientras.fromJson(Map<String, dynamic> json){
     return Mientras(
       idInstruccion : json["idInstruccion"],
+      codigo: json["codigo"],
       descripcion : json["descripcion"],
       nombre : json["nombre"],
       tipo : json["tipo"]
@@ -67,6 +87,7 @@ class Mientras extends Instruccion {
       condicion: template.condicion,
       nombre: template.nombre,
       idInstruccion: template.idInstruccion,
+      codigo: template.codigo,
       tipo: template.tipo,
       descripcion: template.descripcion
     );

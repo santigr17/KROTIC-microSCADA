@@ -3,7 +3,7 @@
     [
         {
             "idInstruccion": 1,
-            "codigo": "iks04",
+            "codigo": "iks01",
             "nombre": "INICIO",
             "descripcion": "INICIO\n<Bloque codigo>",
             "explicacion":"Inicia bloque de codigo",
@@ -12,7 +12,7 @@
         },
         {
             "idInstruccion": 2,
-            "codigo": "iks05",
+            "codigo": "iks02",
             "nombre": "FIN",
             "descripcion": "<Bloque Codigo> FIN",
             "explicacion":"Termina bloque de codigo",
@@ -30,7 +30,7 @@
         },
         {
             "idInstruccion": 4,
-            "codigo": "iks01",
+            "codigo": "iks04",
             "nombre": "SI",
             "descripcion": "SI <Condicion>\n <Bloque de codigo> ",
             "explicacion":"Equivalente al IF en progra",
@@ -39,7 +39,7 @@
         },
         {
             "idInstruccion": 5,
-            "codigo": "iks02",
+            "codigo": "iks05",
             "nombre": "SI SINO",
             "descripcion": "SI:<condicion>\n<Bloque de codigo>\nSINO: <Bloque de codigo>",
             "explicacion":"Equivalente al ELSE en progra",

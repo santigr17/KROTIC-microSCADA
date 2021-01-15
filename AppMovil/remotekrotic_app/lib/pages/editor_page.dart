@@ -6,10 +6,10 @@ import 'package:flutter_html/style.dart';
 import 'package:remotekrotic_app/bloc/editorBloc/editorBloc.dart';
 import 'package:remotekrotic_app/bloc/editorBloc/editorEvent.dart';
 import 'package:remotekrotic_app/bloc/editorBloc/editorState.dart';
-import 'package:remotekrotic_app/models/instruccion.dart';
-import 'package:remotekrotic_app/models/modulo.dart';
-import 'package:remotekrotic_app/models/programa.dart';
-import 'package:remotekrotic_app/models/usuarios_model.dart';
+import 'package:remotekrotic_app/modelos/instruccion.dart';
+import 'package:remotekrotic_app/modelos/modulo.dart';
+import 'package:remotekrotic_app/modelos/programa.dart';
+import 'package:remotekrotic_app/modelos/usuarios_model.dart';
 import 'package:remotekrotic_app/services/localDB/localStorage.dart';
 
 import 'codigo_page.dart';
@@ -28,7 +28,7 @@ class EditorPrograma extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("KROTIC-microSCADA"),),
       body: BlocProvider (
-        create: (context) => EditorBloc(LocalStorage()),
+        create: (context) => EditorBloc(LocalStorage(), user),
         child: BlocBuilder<EditorBloc, EditorState>(
           builder: (context, state) {
             if(state is Equipando){
@@ -96,7 +96,7 @@ class EditorPrograma extends StatelessWidget {
                 children: <Widget>[
                   Flexible(
                     flex: 1,
-                    child:Encabezado(btnEnviar: true, robot: state.prograActual.robot)),
+                    child:Encabezado(btnEnviar: true, robot: state.prograActual.robot, nombrePrograma: state.prograActual.nombrePrograma,)),
                   Expanded(
                     flex: 5,
                     child: AreaEditor(
@@ -123,21 +123,29 @@ class EditorPrograma extends StatelessWidget {
 class Encabezado extends StatelessWidget{
   final bool btnEnviar;
   final List<Modulo> robot;
-  final List<Instruccion> programa;
-  Encabezado({this.btnEnviar, this.robot, this.programa});
+  String nombrePrograma = '';
+  Encabezado({this.btnEnviar, this.robot, this.nombrePrograma, });
 
   @override
   Widget build(context) {
     var _editorBloc = BlocProvider.of<EditorBloc>(context);
+    TextEditingController txt = new TextEditingController();
+    if(nombrePrograma!=''){
+      txt.text = this.nombrePrograma;
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Expanded(
           child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Nombre del programa',
-              ),
+            controller: txt,
+            decoration: InputDecoration(
+              labelText: 'Nombre del programa',
             ),
+            onChanged: (String text) => {
+              _editorBloc.add(EditarNombre(nombrePrograma=text))
+            },
+          ),
         ),
         Flexible(
           child: ElevatedButton.icon(
@@ -152,7 +160,7 @@ class Encabezado extends StatelessWidget{
               child: ElevatedButton.icon(
               onPressed: () => {
                 _editorBloc.add(EnviarPrograma())
-              }, //inicioBloc.add(CrearProgra(estudiante))
+              },
               label: Text("ENVIAR"),
               icon: Icon(Icons.send_outlined),
             ),

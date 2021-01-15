@@ -8,8 +8,8 @@ import 'package:remotekrotic_app/bloc/inicioEstudianteBlob/inicio_event.dart';
 import 'package:remotekrotic_app/bloc/inicioEstudianteBlob/inicio_state.dart';
 import 'package:remotekrotic_app/bloc/navigator/NavigatorAction.dart';
 import 'package:remotekrotic_app/bloc/navigator/NavigatorBloc.dart';
-import 'package:remotekrotic_app/models/programa.dart';
-import 'package:remotekrotic_app/models/usuarios_model.dart';
+import 'package:remotekrotic_app/modelos/programa.dart';
+import 'package:remotekrotic_app/modelos/usuarios_model.dart';
 import 'package:remotekrotic_app/pages/editor_page.dart';
 import 'package:remotekrotic_app/services/localDB/localStorage.dart';
 
@@ -154,7 +154,7 @@ class PrograItem extends StatelessWidget{
           style: TextStyle(fontSize: 25),
         ),
         Text("Estado:${item.estado}"),
-        Text(item.fecha),
+        Text(item.fechaCreacion),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

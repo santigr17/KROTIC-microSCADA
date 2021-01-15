@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:remotekrotic_app/models/programa.dart';
-import 'package:remotekrotic_app/models/usuarios_model.dart';
+import 'package:remotekrotic_app/modelos/programa.dart';
+import 'package:remotekrotic_app/modelos/usuarios_model.dart';
 
 abstract class InicioState extends Equatable {
   List<Object> get props => [];
