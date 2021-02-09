@@ -4,7 +4,7 @@ from flask_mongoengine import MongoEngine
 from flask import Flask, request, jsonify, render_template
 # LOCAL FILES
 from modelos.programa import Programa
-
+from modelos.usuarios import Usuario
 
 
 app = Flask(__name__)
@@ -31,10 +31,33 @@ topicArduino = 'itcr/lutec/krotic/Arduino'
 topicCircuitoEsperanza = 'itcr/lutec/krotic/CircuitoEsperanza'
 topicWebApp = 'itcr/lutec/krotic/WebApp'
 
+## ARCHIVOS CONFIG
+
+modulosDisponibles = []
+instruccionesDisponibles = []
+try:
+    with open("recursos/modulos.json") as jsonFile:
+        jsonModulos = json.load(jsonFile)
+        modulosDisponibles = jsonModulos['modulos']
+        
+    with open("recursos/instrucciones.json") as jsonFile:
+        jsonInstrucciones = json.load(jsonFile)
+        instruccionesDisponibles = jsonInstrucciones['instrucciones']
+        
+    for modulo in modulosDisponibles:
+        for instruXmodulo in modulo['instrucciones']:
+            instruccionesDisponibles.append(instruXmodulo)
+    print(" - Modulos e Instrucciones cargados correctamente.")
+
+except Exception as e:
+    print(e)
+    print("ERROR: NO SE PUDIERON CARGAR ARCHIVOS DE INSTRUCCIONES Y MÓDULOS")
+    
+
 @mqtt.on_connect()
 def handle_connect(client, userdata, flags, rc):
     mqtt.subscribe(topicWebApp)
-    print("\n - Subscripción MQTT a: " + topicWebApp)
+    print(" - Subscripción MQTT a: " + topicWebApp)
 
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
@@ -48,23 +71,22 @@ def handle_mqtt_message(client, userdata, message):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html',nombre="KROTIC")
+    return render_template('index.html',programas=[])
 
 
 @app.route('/programa/ejecutar', methods=['GET'])
 def ejecutar():
-    
-    prograId = request.args.get('idprograma')
+    prograId = request.args.get('id')
     progra = Programa.objects(idPrograma = prograId).first()
     print(type(progra.to_json()))
     prograJson = progra.to_json()
-    mqtt.publish(topicCircuitoEsperanza, prograJson)
+    # mqtt.publish(topicCircuitoEsperanza, prograJson)
     return jsonify({"Executing":progra})
 
 
 @app.route('/programa/ejecutar/demo', methods=['GET'])
 def ejecutar_demo():
-    prograJson = "{\"code\":[1,{\"id\":3,\"cond\":6,\"param\":2,\"bloque\":[101,103,117]},2]}"
+    prograJson = "{\"code\":[1, 101, 103, 101, {\"id\":3,\"cond\":6,\"param\":2,\"bloque\":[101,103,102,104]},2]}"
     mqtt.publish(topicArduino, prograJson)
     return prograJson
 
@@ -75,6 +97,12 @@ def grabar_programa():
     if(grabando == 0):
         cmd = "{\"cmd\":\"Detener\"}"
 
+    mqtt.publish(topicCircuitoEsperanza, cmd)
+    return jsonify({"Enviado: ":cmd})
+
+@app.route('/programa/subirvideos', methods=['GET'])
+def subir_videos():
+    cmd = "{\"cmd\":\"Subir\"}"
     mqtt.publish(topicCircuitoEsperanza, cmd)
     return jsonify({"Enviado: ":cmd})
 
@@ -99,8 +127,24 @@ def hola_pista_mqtt():
 
 @app.route('/programas', methods=['GET'])
 def query_programas():
-    progras = Programa.objects()
-    return jsonify(progras.to_json())
+    progras = Programa.objects().all()
+    item = request.args.get('id')
+    vista = {}
+    if(item):
+        progra = Programa.objects(idPrograma = item).first()        
+        user = Usuario.objects(idUsuario = progra.idUsuario).first()
+        vista["usuario"] = user
+        vista["programa"] = progra
+        mods = []
+        inst = []
+        for modulo in modulosDisponibles:
+            if(modulo['idModulo'] in progra.modulos):
+                mods.append(modulo)
+        
+        vista["modulos"] = mods
+    # print(vista)
+    return render_template("programas.html",programas = progras, vista = vista)
+   
 
 
 @app.route('/app/programas', methods=['GET'])
@@ -111,8 +155,8 @@ def query_programas_usuario():
 
 
 
-@app.route('/app/programa/', methods=['POST'])
-def create_programa():
+@app.route('/programa/', methods=['POST'])
+def crear_programa():
     dataPrograma = json.loads(request.data)
     newProgra = Programa.fromJson(dataPrograma)
     if(newProgra == None):
@@ -129,11 +173,28 @@ def create_programa():
         print(e)
         return jsonify({'error': 'Error salvando el programa'})
 
+@app.route('/usuarios/registrar', methods=['POST'])
+def registrar_usuario():
+    dataUser = json.loads(request.data)
+    newUser = Usuario.fromJson(dataUser)
+    if(newUser == None):
+        return jsonify({'error': 'Error en formato'})
+    try:
+        print("Creando usuario ........")
+        newUser.save()
+        print("Usuario creado correctamente")
+        return jsonify(newUser)
+    except Exception as e:
+        print(dataUser)
+        print(newUser)
+        print(e)
+        return jsonify({'error': 'Error salvando el usuario'})
+
 
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
 
 #################################################################
 #                                                               #

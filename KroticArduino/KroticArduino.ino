@@ -218,46 +218,21 @@ void setup() {
 
 
 void loop() {
-  if(Serial.available()){
-    Blink(1);
-    while(Serial.available()){
-      String inputString = Serial.readStringUntil('\n');
-      if(ejecucion){
-          int dosPuntos = inputString.indexOf(':');
-          if (dosPuntos > 0) {
-            String comando = inputString.substring(0, dosPuntos);
-            String valor = inputString.substring(dosPuntos + 1, inputString.length());
-        
-            if (comando == "cmd") {
-              Ejecutar(valor.toInt());
-              Serial.print("ok:");
-              Serial.println(valor);
-            }
-            else {
-              Serial.print("Error ");
-              Serial.println(inputString);
-            }
-          }
-          else if(inputString == "fin"){ 
-            ejecucion = false;
-            Serial.println("ok");
-          }
-          else if(inputString == "clear"){
-            ClearSerial();
-            Serial.println("ok");
-          }
-          else { Serial.println(inputString); }
-      }
-      else if(inputString == "inicio") {
-        ejecucion = true;
-        Serial.println("ok");
-      }
-    }
-  }
+  delay(4000);
+  Ejecutar(101);
+  Ejecutar(103);
+  Ejecutar(101);
+  Ejecutar(101);
+  Ejecutar(103);
+  Ejecutar(101);
+  Ejecutar(103);
+  Ejecutar(101);
+  Ejecutar(103);
+  Ejecutar(101);
+  Ejecutar(103);
+  Ejecutar(101);
+  BtnEspera();
   
-  if(ejecucion){
-    Blink(1);
-  }
 }
 
 

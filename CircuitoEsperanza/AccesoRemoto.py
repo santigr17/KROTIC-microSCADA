@@ -61,7 +61,10 @@ def on_message(client, userdata, msg):
 
             client.publish(topicWebApp, payload = respuesta, qos=0, retain=False)    
         
-        elif(comando["cmd"] == "Subir videos"):
+        elif(comando["cmd"] == "Subir"):
+            respuesta = str(pista.publicarVideos())
+            client.publish(topicWebApp, payload = respuesta, qos=0, retain=False)
+            
 
         elif(comando["cmd"] == "Publicar"):
             pass

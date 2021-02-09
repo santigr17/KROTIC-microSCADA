@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:ffi';
+
 /**
  * Constantes para comparaciones
  */
@@ -12,6 +15,7 @@ class Instruccion {
   final String tipo;
   int anidado = 0;
   Instruccion({this.idInstruccion, this.codigo, this.nombre, this.descripcion, this.tipo});
+  
   factory Instruccion.fromJson(Map<String, dynamic> json){
     return Instruccion(
       idInstruccion : json["idInstruccion"],
@@ -21,6 +25,12 @@ class Instruccion {
       tipo : json["tipo"]
     );
   }
+
+   Map<String, dynamic> toJson() => {
+    'idInstruccion' : idInstruccion,
+    'codigo' : codigo
+  };
+
   factory Instruccion.clone(Instruccion template){
     return Instruccion(
       nombre: template.nombre,
@@ -47,6 +57,14 @@ class Condicion extends Instruccion {
       tipo : json["tipo"]
     );
   }
+  Map<String, dynamic> toJson() => {
+    'idInstruccion' : idInstruccion,
+    'codigo' : codigo
+  };
+
+
+  
+
   factory Condicion.clone(Mientras template){
     return Condicion(
       idInstruccion: template.idInstruccion,
@@ -61,6 +79,7 @@ class Condicion extends Instruccion {
 class Mientras extends Instruccion {
   Instruccion condicion;
   List<dynamic> bloque = [];
+  double parametro = 5.0;
   
   Mientras({
     int idInstruccion,
@@ -68,7 +87,8 @@ class Mientras extends Instruccion {
     String nombre, 
     String descripcion, 
     String tipo,
-    this.condicion, 
+    this.condicion,
+    this.parametro,
     this.bloque})
     :super(idInstruccion: idInstruccion, nombre: nombre, descripcion: descripcion, tipo: tipo, codigo: codigo);
   
@@ -81,10 +101,21 @@ class Mientras extends Instruccion {
       tipo : json["tipo"]
     );
   }
+
+  Map<String, dynamic> toJson() => {
+    'idInstruccion' : idInstruccion,
+    'codigo' : codigo,
+    'parametro':parametro,
+    'condicion':condicion,
+    'bloque':bloque
+  };
+
+
   factory Mientras.clone(Mientras template){
     return Mientras(
       bloque: template.bloque,
       condicion: template.condicion,
+      parametro: template.parametro,
       nombre: template.nombre,
       idInstruccion: template.idInstruccion,
       codigo: template.codigo,

@@ -33,11 +33,7 @@ class Programa {
     robot.forEach((item) => ids.add(item.idModulo));
     return ids;
   }
-  List<int> listaInstruccionesID(){
-    List<int> ids = [];
-    instrucciones.forEach((item) => ids.add(item.idInstruccion));
-    return ids;
-  }
+
 
   Map<String, dynamic> toJson(int idUsuario) => {
     'idUsuario' : idUsuario,
@@ -46,6 +42,6 @@ class Programa {
     'fechaCreacion':fechaCreacion,
     'estado':estado,
     'modulos':jsonEncode(this.listaModulosID()),
-    'instrucciones':jsonEncode(this.listaInstruccionesID())
+    'instrucciones':this.instrucciones
   };
 }

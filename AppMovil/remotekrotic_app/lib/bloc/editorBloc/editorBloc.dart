@@ -25,7 +25,7 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
   
   EditorBloc(LocalStorage storageService, Usuario user) : super(Inicial()) {
     _storageService = storageService;
-    this._newPrograma = Programa(instrucciones: []);
+    this._newPrograma = Programa(idprograma: -1,instrucciones: []);
     this._bloqueActual.add(this._newPrograma.instrucciones);
     this._usuario = user;
   }
@@ -36,8 +36,6 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
       yield Cargando();
        this.modsDisponibles = await  _storageService.getModulos();
        this.instDisponibles = await  _storageService.getInstrucciones();
-       // Asignando id del programa
-       this._newPrograma.idprograma = instDisponibles.length;
         if(this.instDisponibles != null && this.modsDisponibles != null){
           _newPrograma.robot=[];
           yield Equipando(this.modsDisponibles, _newPrograma.robot);
@@ -77,7 +75,7 @@ class EditorBloc extends Bloc<EditorEvent,EditorState>{
 
     if(event is AgregarMientras){
       yield Cargando();
-      Mientras instancia = Mientras.clone(event.newInstruccion); //Deep copy del objeto mientras
+      Mientras instancia = Mientras.clone(event.newInstruccion); //Deep copy del objeto mientras "clone" no es nativa
       instancia.bloque = [];
       instancia.anidado = this._newPrograma.ciclos;
       print("ADDING WHILE CODE:");

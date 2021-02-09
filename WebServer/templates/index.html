@@ -1,21 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<title>Hola, que tal {{nombre}}</title>
-<meta charset="utf-8" />
-</head>
- 
-<body>
-    <header>
-       <h1>Mi sitio web</h1>
-       <p>Mi sitio web creado en html5</p>
-    </header>
-    <h2>Vamos a saludar</h2>
-    {% if nombre %}
-      <h1>Hola {{nombre|title}}</h1>
-      <p>¿Cómo estás?</p>
-    {%else%}
-      <p>No has indicado un nombre</p>
-    {% endif %}
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<div class="container-fluid text-center"> 
+   <div class="row"> </div>
+    <div class="col-sm-10 text-left"> 
+        <h1>¡Bienvenido! </h1>
+        <h2>KROTIC-microSCADA</h1>
+        <p class="text-justify">
+          Este proyecto pertenece al laboratorio LuTec en la rama de KROTIC. 
+          Esta rama del laboratorio tiene como objetivo ensenar a niños 
+          principios básicos de robótica y programación 
+          por medio de robots construidos de forma modular, que pueden desarrollar diferentes tareas.
+        </p>
+        <p class="text-justify">
+          El sistema KROTIC-microSCADA tiene como objetivo
+          permitir a ninos interesados en aprender sobre robótica y
+          programación, programar y observar al robot KROTIC sin
+          necesidad de desplazarse al laboratorio LuTec o al centro
+          educativo.
+        </p>
+        <hr>
+        <h3>LuTec</h3>
+        <p class="text-justify">
+          El laboratorio LuTec es un proyecto del Centro de Investigación en Computación del TEC, 
+          en el cual participan colaboradores que crean proyectos de distintos grados de dificultad para generar interés en la ciencia y la tecnología en niños de áreas rurales, documentando todo el proceso de creación para su posterior comprensión y eventual reproducción.
+          Estos proyectos son desplegados en campo por medio de una modalidad de campamentos, en los cuales el laboratorio realiza actividades en las que se incentiva a los niños a crear algún proyecto de distinta dificultad según la edad y habilidad del niño inspirados por la presentación de distintos proyectos finales de LuTec.
+        </p>
+      </div>
+      <div class="col-sm-2">
+          <div class="container-fluid">
+              <img src="{{url_for('static', filename='images/logo.jpeg')}}"/>
+          </div>
+      </div>
+  </div>
+  
+{% endblock content %}

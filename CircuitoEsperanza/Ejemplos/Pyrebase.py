@@ -23,9 +23,9 @@ path_local1 = "Grabaciones/Cam0.avi"
 path_local2 = "Grabaciones/Cam2.avi"
 path_local3 = "Grabaciones/Cam4.avi"
 
-# storage.child(path_on_cloud1).put(path_local1)
-# storage.child(path_on_cloud2).put(path_local2)
-# storage.child(path_on_cloud3).put(path_local3)
+vid1 = storage.child(path_on_cloud1).put(path_local1)
+vid2 = storage.child(path_on_cloud2).put(path_local2)
+vid3 = storage.child(path_on_cloud3).put(path_local3)
 
 vidLink1 = storage.child(path_on_cloud1).get_url(None)
 vidLink2 = storage.child(path_on_cloud2).get_url(None)

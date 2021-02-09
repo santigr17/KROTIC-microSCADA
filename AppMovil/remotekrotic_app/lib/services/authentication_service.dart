@@ -23,7 +23,7 @@ class FakeAuthenticationService extends AuthenticationService {
     // if (email.toLowerCase() != 'estudiante' || password != 'pass123') {
     //   throw AuthenticationException(message: 'Wrong username or password');
     // }
-    return Estudiante(1,"Santi","santigr17","pass123");
+    return Estudiante(0,"Santiago Gamboa Ramírez","santigr17","pass123");
   }
 
   @override
